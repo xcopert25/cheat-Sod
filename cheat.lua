@@ -139,3 +139,12 @@ for _, btn in ipairs(teleportButtons) do
         teleportTo(btn.cframe)
     end)
 end
+local Tab = Window:NewTab("Other cheat")
+local Section = Tab:NewSection("cheat")
+Section:NewButton("Infinity yield", "fe admin", function()
+    loadstring(game:HttpGet("loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()"))()
+end)
+local Section = Tab:NewSection("cheat")
+Section:NewButton("Dex", "fe admin", function()
+    loadstring(game:HttpGet(loadstring(game:HttpGet("https://raw.githubusercontent.com/UltraFEmotes/im-bored/refs/heads/main/dexnoapi.lua"))()
+end)
