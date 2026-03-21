@@ -1,4 +1,3 @@
--- Загружаем UI-библиотеку
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
 local Window = Library.CreateLib("MyGame Scripts", "RJTheme3")
 
@@ -96,7 +95,7 @@ sobSection:NewButton("Stop Moving Coins", "Остановить перемеще
 end)
 
 -- Слайдеры для скорости и прыжка
-sobSection:NewLabel("Speed and Jump")
+sobSection:NewLabel("Cheats")
 sobSection:NewSlider("Speed", "Speed 0-500", 500, 0, function(s)
     local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
     if humanoid then
@@ -110,6 +109,26 @@ sobSection:NewSlider("Jump Power", "Jump 0-250", 250, 0, function(s)
         humanoid.JumpPower = s
     end
 end)
+
+-- Исправленная кнопка Tooltp
+local function setupTooltp()
+    local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+    local tool = Instance.new("Tool")
+    tool.RequiresHandle = false
+    tool.Name = "Click Teleport"
+    tool.Activated:Connect(function()
+        local pos = mouse.Hit + Vector3.new(0, 2.5, 0)
+        local cf = CFrame.new(pos.X, pos.Y, pos.Z)
+        local character = player.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            character.HumanoidRootPart.CFrame = cf
+        end
+    end)
+    tool.Parent = player.Backpack
+end
+
+sobSection:NewButton("Tooltp", "tp", setupTooltp)
 
 -- =========================
 -- Телепорты
@@ -133,7 +152,7 @@ local teleports = {
     {name = "Snowdin 1", cframe = CFrame.new(-72.0665, 5.5, -15.2218)},
     {name = "Snowdin 2", cframe = CFrame.new(831.804932, 69.5408936, 176.584122)},
     {name = "Snowdin 3", cframe = CFrame.new(823.5961, 74.8315, -20.2965)},
-    {name = "Grilby", cframe = CFrame.new(557.3734, 76.5545, 87.7784)},
+    {name = "Goblins", cframe = CFrame.new(557.3734, 76.5545, 87.7784)},
     {name = "Last corridor", cframe = CFrame.new(-20.5446, -21.5846, 3738.651)},
     {name = "BasePlace", cframe = CFrame.new(63.3021, 2015.6899, 6.8759)},
 }
