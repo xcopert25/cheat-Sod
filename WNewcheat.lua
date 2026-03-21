@@ -10,7 +10,7 @@ local teleportSection = teleportTab:NewSection("Teleport to locations")
 local otherTab = Window:NewTab("Other cheat")
 local cheatSection = otherTab:NewSection("Cheats")
 
--- Объявляем функции для телепортации и перемещения монет
+-- Функция телепортации
 local function teleportPlayer(position)
     local player = game.Players.LocalPlayer
     if not player then return end
@@ -21,6 +21,7 @@ local function teleportPlayer(position)
     end
 end
 
+-- Функция перемещения монет
 local function moveCoinsToPlayer()
     local player = game.Players.LocalPlayer
     if not player then return end
@@ -37,33 +38,31 @@ local function moveCoinsToPlayer()
     end
 end
 
--- Автофам
-sobSection:NewLabel("AutoFarm")
-sobSection:NewButton("Autofarm", "Автоматический фейк", function()
+-- =========================
+-- Автофам, который повторяется 10 000 раз
+-- =========================
+
+local function runAutoFarm()
     for i = 1, 10000 do
         teleportPlayer(Vector3.new(-18.8776093, -48.4361572, 3668.14722))
+        wait(0.5)
         moveCoinsToPlayer()
         wait(3)
         teleportPlayer(Vector3.new(831.804932, 74.5408936, 176.584122))
+        wait(0.5)
         moveCoinsToPlayer()
         wait(3)
         teleportPlayer(Vector3.new(63.2598038, 2028.52783, 6.85559082))
+        wait(1)
     end
-end)
+end
 
-sobSection:NewButton("NewAutoFarm", "Новый автофам", function()
-    for i = 1, 10000 do
-        teleportPlayer(Vector3.new(-18.8776093, -53.4361572, 3668.14722))
-        moveCoinsToPlayer()
-        wait(3)
-        teleportPlayer(Vector3.new(831.804932, 69.5408936, 176.584122))
-        moveCoinsToPlayer()
-        wait(3)
-        teleportPlayer(Vector3.new(63.2598038, 2023.52783, 6.85559082))
-    end
-end)
+sobSection:NewButton("AutoFarm x10000", "Повторить автофам 10 000 раз", runAutoFarm)
 
--- Перемещение монет к игроку (с возможностью включения/выключения)
+-- =========================
+-- Перемещение монет
+-- =========================
+
 local movingCoins = false
 local moveCoinsConnection
 
@@ -113,11 +112,13 @@ sobSection:NewSlider("Jump Power", "Jump 0-250", 250, 0, function(s)
 end)
 
 -- =========================
--- ТЕЛЕПОРТЫ
+-- Телепорты
 -- =========================
 
 local function teleport(pos)
-    local character = game.Players.LocalPlayer.Character
+    local player = game.Players.LocalPlayer
+    if not player then return end
+    local character = player.Character
     if character and character:FindFirstChild("HumanoidRootPart") then
         character.HumanoidRootPart.CFrame = pos
     end
@@ -132,7 +133,7 @@ local teleports = {
     {name = "Snowdin 1", cframe = CFrame.new(-72.0665, 5.5, -15.2218)},
     {name = "Snowdin 2", cframe = CFrame.new(831.804932, 69.5408936, 176.584122)},
     {name = "Snowdin 3", cframe = CFrame.new(823.5961, 74.8315, -20.2965)},
-    {name = "Goblins", cframe = CFrame.new(557.3734, 76.5545, 87.7784)},
+    {name = "Grilby", cframe = CFrame.new(557.3734, 76.5545, 87.7784)},
     {name = "Last corridor", cframe = CFrame.new(-20.5446, -21.5846, 3738.651)},
     {name = "BasePlace", cframe = CFrame.new(63.3021, 2015.6899, 6.8759)},
 }
