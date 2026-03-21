@@ -41,7 +41,7 @@ end
 sobSection:NewLabel("AutoFarm")
 sobSection:NewButton("Autofarm", "Автоматический фейк", function()
     for i = 1, 10000 do
-        teleportPlayer(Vector3.new(-18.8776093, -58.4361572, 3668.14722))
+        teleportPlayer(Vector3.new(-18.8776093, -48.4361572, 3668.14722))
         moveCoinsToPlayer()
         wait(3)
         teleportPlayer(Vector3.new(831.804932, 74.5408936, 176.584122))
